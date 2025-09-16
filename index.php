@@ -7,4 +7,17 @@
 
 declare(strict_types=1);
 
-echo "hellp from index.php";
+get_header();
+
+?>
+            <div>
+                <h1>I'm a header</h1>
+                <p>I'm body text</p>
+                <ul>
+                    <li>List item 1</li>
+                    <li>List item 2</li>
+                </ul>
+            </div>
+<?php
+
+get_footer();

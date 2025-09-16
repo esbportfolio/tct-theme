@@ -6,11 +6,5 @@ Version: 1.0
 Text Domain: tct
 */
 
-/* GLOBAL CUSTOMIZATION CLASSES */
-
-
-/* HEADER CUSTOMIZATION CLASSES */
-
-
-/* FOOTER CUSTOMIZATION CLASSES */
-
+/* Note: This file must be in this location as a mandatory theme file.
+Working CSS files are loaded from the /css directory. */
