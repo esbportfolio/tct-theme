@@ -1,0 +1,236 @@
+// MODULES
+
+@use 'sass:color';
+@use "sass:map";
+
+// SASS FUNCTIONS
+
+// Lighten a color by a percent
+@function tint($color, $percentage) {
+    @return color.mix(white, $color, $percentage);
+}
+
+// Darken a color by a percent
+@function shade($color, $percentage) {
+    @return color.mix(black, $color, $percentage);
+}
+
+// Get the contrasting text color in white or black
+@function contrast-text($color) {
+    @if (color.channel($color, "lightness", $space: hsl) > 50) {
+        @return #000;
+    } @else {
+        @return #fff;
+    }
+}
+
+// SASS VARIABLES
+
+$tct-green: #00a56a;
+$tct-red: #ee4a25;
+$tct-yellow: #e6a622;
+$tct-blue: #0066a3;
+$tct-tan: #f3edd7;
+$tct-dk-green: #153128;
+
+// LISTS AND MAPS
+
+$style-parts: (
+    'background-color': 'bg',
+    'border': 'border',
+    'color': 'txt'
+);
+
+$theme-colors: (
+    'green': $tct-green,
+    'red': $tct-red,
+    'yellow': $tct-yellow,
+    'blue': $tct-blue,
+    'tan': $tct-tan,
+    'dk-green': $tct-dk-green
+);
+
+$context-colors: (
+    'success': $tct-green,
+    'warning': $tct-yellow,
+    'danger': $tct-red,
+    'info': $tct-blue
+);
+
+/************ FONTS ************/
+
+@font-face {
+    font-family: 'Prompt';
+    src: url("../assets/font-prompt/Prompt-Regular.ttf");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Prompt';
+    src: url("../assets/font-prompt/Prompt-Italic.ttf");
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Prompt';
+    src: url("../assets/font-prompt/Prompt-Bold.ttf");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Prompt';
+    src: url("../assets/font-prompt/Prompt-BoldItalic.ttf");
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Prompt';
+    src: url("../assets/font-prompt/Prompt-Light.ttf");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Prompt';
+    src: url("../assets/font-prompt/Prompt-LightItalic.ttf");
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Arvo';
+    src: url("../assets/font-arvo/Arvo-Regular.ttf");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Arvo';
+    src: url("../assets/font-arvo/Arvo-Italic.ttf");
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Arvo';
+    src: url("../assets/font-arvo/Arvo-Bold.ttf");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Arvo';
+    src: url("../assets/font-arvo/Arvo-BoldItalic.ttf");
+    font-weight: 700;
+    font-style: italic;
+}
+
+/************ BASE STYLES ************/
+
+body {
+    font-size: 1em;
+    font-family: 'Prompt', Verdana, sans-serif;
+    font-weight: 500;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Arvo', Garamond, serif;
+    font-weight: 700;
+}
+
+/************ RESPONSIVE LAYOUT ************/
+
+/* Mobile-first */
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+/* Small */
+@media only screen and (min-width: 600px) {
+    .container {
+        width: 80%;
+    }
+}
+
+/* Medium */
+@media only screen and (min-width: 768px) {
+    .container {
+        width: 70%;
+    }
+}
+
+/* Large */
+@media only screen and (min-width: 992px) {
+    .container {
+        width: 60%;
+    }
+}
+
+// /* Extra-large */
+// @media only screen and (min-width: 1200px) {
+
+// }
+
+/************ BUTTONS AND ALERTS ************/
+
+@each $meaning, $color in $context-colors {
+    
+    .alert.#{$meaning} {
+        color: shade($color, 75%);
+        background-color: tint($color, 75%);
+        border: 1px solid $color;
+        border-radius: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        margin: 1rem auto;
+    }
+
+    button.#{$meaning} {
+        color: contrast-text($color);
+        background-color: $color;
+        border: 1px solid shade($color, 50%);
+        border-radius: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    button.#{$meaning}:hover {
+        background-color: tint($color, 25%);
+        transition: 0.3s;
+    }
+}
+
+/************ THEME COMPONENTS   ************/
+
+.flower-border {
+    height: 2rem;
+    border: 1px solid red;
+    background-image: url("../assets/img/border.png");
+    background-repeat: repeat-x;
+    background-position: bottom center;
+    background-size: cover;
+}
+
+@media only screen and (min-width: 600px) {
+    .flower-border {
+        background-size: contain;
+    }
+}
+
+
+/************ COLORS ************/
+
+@each $label, $color in $theme-colors {
+
+    @each $attribute, $prefix in $style-parts {
+        .#{$prefix}-#{$label} {
+            #{$attribute}: #{$color};
+        }
+    }
+
+}

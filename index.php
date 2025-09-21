@@ -10,13 +10,9 @@ declare(strict_types=1);
 get_header();
 
 ?>
-            <div>
-                <h1>I'm a header</h1>
-                <p>I'm body text</p>
-                <ul>
-                    <li>List item 1</li>
-                    <li>List item 2</li>
-                </ul>
+            <div class="container">
+                <h1>Main Header</h1>
+                <p>This is the body</p>
             </div>
 <?php
 
