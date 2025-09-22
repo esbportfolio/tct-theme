@@ -144,6 +144,7 @@ body {
     font-size: 1em;
     font-family: 'Prompt', Verdana, sans-serif;
     font-weight: 500;
+    box-sizing: border-box;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -209,26 +210,21 @@ nav {
     li {
         margin: 0;
     }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
 }
 
 #primary-menu {
 
     &.expanded {
-        border-bottom: 10px solid $tct-green;
+        border-bottom: 0.5rem solid $tct-green;
     }
 
     ul {
         padding: 0 2rem;
-    }
-
-    ul:first-child {
-        padding: 0;
-    }
-
-    a {
-        display: block;
-        color: inherit;
-        text-decoration: none;
     }
 
     a.active {
@@ -264,124 +260,67 @@ nav {
 
 }
 
-// nav {
-//     display: flex;
-//     flex-wrap: wrap;
-//     gap: math.div($sp, 2);
-//     align-items: center;
-//     form {
-//         margin: 0;
-//     }
-//     button,
-//     .button,
-//     .button-primary {
-//         margin: 0;
-//     }
-//     ul {
-//         margin: 0;
-//         padding: 0;
-//         list-style-type: none;
-//     }
-//     li {
-//         margin: 0;
-//     }
-//     a {
-//         display: block;
-//         color: inherit;
-//         text-decoration: none;
-//     }
-//     a:hover {
-//         color: inherit;
-//     }
-//     li:nth-child(n+2) {
-//         padding-top: math.div($sp, 2);
-//     }
-//     .active {
-//         font-weight: bold;
-//     }
-// }
-
-// .site-identity {
-//     flex: 1;
-//     font-size: 2rem;
-// }
-
-
-// .controls {
-//     display: flex;
-//     align-items: center;
-// }
-
-// .toggler {
-//     button {
-//         height: auto;
-//         margin: 0;
-//         padding: 0;
-//     }
-//     span {
-//         display: block;
-//         margin-left: 1px; /* Fixes icon slightly off-center */
-//         font-size: 2.5rem;
-//     }
-// }
-
-// #toggler-content {
-//     flex: 0 1 100%;
-//     overflow: hidden;
-//     transition: height 0.3s ease-out;
-// }
-
-// .hide {
-//     height: 0;
-// }
-
-// .show {
-//     height: var(--openHeight);
-// }
-
-// // Display on larger screens
-// @media (min-width: 550px) {
-//     nav {
-//         ul {
-//             display: flex;
-//             flex-wrap: wrap;
-//             justify-content: flex-end;
-//             align-items: center;
-//             margin-left: $sp;
-//         }
-//         li:nth-child(n+2) {
-//             padding: 0;
-//         }
-//         li a {
-//             padding: math.div($sp, 4) math.div($sp, 2);
-//         }
-//     }
+/* Nav on medium and larger screens */
+@media only screen and (min-width: map.get($breakpoints, "md")) {
     
-//     .site-identity {
-//         flex: none;
-//         padding-right: math.div($sp, 2);
-//     }
+    #primary-menu {
 
-//     .controls {
-//         order: 1;
-//         padding-left: math.div($sp, 2);
-//     }
+        border-width: 0.5rem 0;
+        border-color: $tct-green;
+        border-style: solid;
 
-//     .toggler {
-//         display: none;
-//     }
+        ul:first-child {
+            // border: 1px solid red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.25rem 0;
+        }
 
-//     #toggler-content {
-//         flex: 1;
-//         overflow: visible;
-//     }
+        a:hover {
+            color: $tct-green;
+            text-decoration: underline;
+        }
 
-//     .hide,
-//     .show {
-//         height: auto;
-//     }
-// }
+        .dropdown {
+            display: none;
+            width: 12rem;
+            padding: 0.5rem;
+            background-color: #fff;
+            border: 1px solid $tct-green;
+            border-radius: 0.5rem;
 
+            ul {
+                padding: 0 1rem;
+            }
+        }
+
+        .dropdown-toggle {
+
+            &:hover .dropdown {
+                display: block;
+                position: absolute;
+            }
+
+            a:hover {
+                text-decoration: none;
+            }
+
+        }
+
+        .toggler {
+            display: none;
+        }
+
+        .hide, 
+        .show {
+            height: auto;
+        }
+
+    }
+
+}
 
 /************ BUTTONS AND ALERTS ************/
 

@@ -5,6 +5,7 @@
 
 // Locate everything with the toggler class
 const togglers = document.querySelectorAll('.toggler button');
+const dropdowns = document.querySelectorAll('.dropdown-toggle');
 
 ///////////////////////////////////////
 // CALLBACKS
@@ -13,7 +14,7 @@ const togglers = document.querySelectorAll('.toggler button');
  * Shows or hides the content the toggler is linked to
  * @param {Event} e Event triggered by the listener
  */
-const showContents = function(e) {
+const showTogglerContent = function(e) {
     // Locate targeted element
     const targetId = e.currentTarget.dataset.target;
     const targetEl = document.getElementById(targetId);
@@ -36,4 +37,5 @@ const showContents = function(e) {
 // LISTENERS
 
 // Attach a listener to each element with the toggler class
-togglers.forEach(el => el.addEventListener('click', showContents));
+togglers.forEach(el => el.addEventListener('click', showTogglerContent));
+

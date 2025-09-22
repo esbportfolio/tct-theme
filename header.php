@@ -37,8 +37,8 @@ declare(strict_types=1);
                         <ul>
                             <li><a href="#">Link 1</a></li>
                             <li><a href="#" class="active">Link 2</a></li>
-                            <li><a href="#">Dropdown Parent</a>
-                                <ul>
+                            <li class="dropdown-toggle"><a href="#">Dropdown Parent 1<span class="icon-down-dir"></span></a>
+                                <ul class="dropdown">
                                     <li><a href="#">Link a</a></li>
                                     <li><a href="#">Link b</a>
                                         <ul>
@@ -47,7 +47,17 @@ declare(strict_types=1);
                                     </li>
                                 </ul>
                             </li>
-                            <li><a href="#">Link 3</a></li>
+                            <li class="dropdown-toggle"><a href="#">Link<span class="icon-down-dir"></span></a>
+                                <ul class="dropdown">
+                                    <li><a href="#">Link a</a></li>
+                                    <li><a href="#">Link b</a>
+                                        <ul>
+                                            <li><a href="#">Link i</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Link 4</a></li>
                         </ul>
                     </div>
                 </div>
