@@ -57,7 +57,9 @@ if (!function_exists('tct_theme_setup')) {
 
         // Register menus for theme
         register_nav_menus( array(
-            'header-menu' => 'Header Menu'
+            'primary-menu' => 'Navigation Menu',
+            'social-menu' => 'Socials Menu',
+            'credit-menu' => 'Credits Menu'
         ) );
         
     }
@@ -75,10 +77,16 @@ be loaded after styles/scripts.
 // Add CSS and JS files
 function tct_enqueue_scripts() {
 	
-    // Skeleton normalize file (loaded locally)
+    // Skeleton normalize file
     wp_enqueue_style(
         'sk-normalize',
         SITE_ROOT . '/css/normalize.css'
+    );
+
+    // Fontello icon pack
+    wp_enqueue_style(
+        'fontello',
+        SITE_ROOT . '/css/fontello.css'
     );
 
     // Local CSS (load after normalizing)
@@ -88,16 +96,16 @@ function tct_enqueue_scripts() {
         array('sk-normalize')
     );
 
-    // // Bootstrap JS (loaded from CDN)
-    // wp_enqueue_script(
-    //     'bootstrap_js',
-    //     'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js',
-    //     array(),
-    //     false,
-    //     array(
-    //         'strategy' => 'defer'
-    //     )
-    // );
+    // Nav JS
+    wp_enqueue_script(
+        'nav-js',
+        SITE_ROOT . '/js/nav.js',
+        array(),
+        false,
+        array(
+            'strategy' => 'defer'
+        )
+    );
 
     // // WP comment reply JavaScript (loaded only if necesary)
 	// if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

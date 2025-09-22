@@ -35,6 +35,13 @@ $tct-dk-green: #153128;
 
 // LISTS AND MAPS
 
+$breakpoints: (
+    'sm': 600px,
+    'md': 768px,
+    'lg': 992px,
+    'xl': 1200px
+);
+
 $style-parts: (
     'background-color': 'bg',
     'border': 'border',
@@ -47,7 +54,9 @@ $theme-colors: (
     'yellow': $tct-yellow,
     'blue': $tct-blue,
     'tan': $tct-tan,
-    'dk-green': $tct-dk-green
+    'dk-green': $tct-dk-green,
+    'white': #fff,
+    'black': #000
 );
 
 $context-colors: (
@@ -144,6 +153,24 @@ h1, h2, h3, h4, h5, h6 {
 
 /************ RESPONSIVE LAYOUT ************/
 
+/* Responsive display classes */
+
+@each $breakpoint, $size in $breakpoints {
+    .display-min-#{$breakpoint} {
+        display: none;
+    }
+
+    @media only screen and (min-width: #{$size}) {
+        .display-min-#{$breakpoint} {
+            display: unset;
+        }
+
+        .display-max-#{$breakpoint} {
+            display: none;
+        }
+    }
+}
+
 /* Mobile-first */
 .container {
     width: 90%;
@@ -151,30 +178,210 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Small */
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: map.get($breakpoints, "sm")) {
     .container {
         width: 80%;
     }
 }
 
 /* Medium */
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: map.get($breakpoints, "md")) {
     .container {
         width: 70%;
     }
 }
 
 /* Large */
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: map.get($breakpoints, "lg")) {
     .container {
         width: 60%;
     }
 }
 
-// /* Extra-large */
-// @media only screen and (min-width: 1200px) {
+/************ NAVIGATION ************/
 
+nav {
+    ul {
+        margin: 0;
+        list-style-type: none;
+    }
+
+    li {
+        margin: 0;
+    }
+}
+
+#primary-menu {
+
+    &.expanded {
+        border-bottom: 10px solid $tct-green;
+    }
+
+    ul {
+        padding: 0 2rem;
+    }
+
+    ul:first-child {
+        padding: 0;
+    }
+
+    a {
+        display: block;
+        color: inherit;
+        text-decoration: none;
+    }
+
+    a.active {
+        color: $tct-green;
+        font-weight: bold;
+    }
+
+    .toggler {
+        padding: 0.5rem 0;
+        background-color: $tct-green;
+        text-align: center;
+        
+        button {
+            background-color: #fff;
+            border: 1px solid $tct-dk-green;
+            border-radius: 0.25rem;
+        }
+    }
+
+    #toggler-content {
+        flex: 0 1 100%;
+        overflow: hidden;
+        transition: height 0.3s ease-out;
+    }
+
+    .hide {
+        height: 0;
+    }
+
+    .show {
+        height: var(--openHeight);
+    }
+
+}
+
+// nav {
+//     display: flex;
+//     flex-wrap: wrap;
+//     gap: math.div($sp, 2);
+//     align-items: center;
+//     form {
+//         margin: 0;
+//     }
+//     button,
+//     .button,
+//     .button-primary {
+//         margin: 0;
+//     }
+//     ul {
+//         margin: 0;
+//         padding: 0;
+//         list-style-type: none;
+//     }
+//     li {
+//         margin: 0;
+//     }
+//     a {
+//         display: block;
+//         color: inherit;
+//         text-decoration: none;
+//     }
+//     a:hover {
+//         color: inherit;
+//     }
+//     li:nth-child(n+2) {
+//         padding-top: math.div($sp, 2);
+//     }
+//     .active {
+//         font-weight: bold;
+//     }
 // }
+
+// .site-identity {
+//     flex: 1;
+//     font-size: 2rem;
+// }
+
+
+// .controls {
+//     display: flex;
+//     align-items: center;
+// }
+
+// .toggler {
+//     button {
+//         height: auto;
+//         margin: 0;
+//         padding: 0;
+//     }
+//     span {
+//         display: block;
+//         margin-left: 1px; /* Fixes icon slightly off-center */
+//         font-size: 2.5rem;
+//     }
+// }
+
+// #toggler-content {
+//     flex: 0 1 100%;
+//     overflow: hidden;
+//     transition: height 0.3s ease-out;
+// }
+
+// .hide {
+//     height: 0;
+// }
+
+// .show {
+//     height: var(--openHeight);
+// }
+
+// // Display on larger screens
+// @media (min-width: 550px) {
+//     nav {
+//         ul {
+//             display: flex;
+//             flex-wrap: wrap;
+//             justify-content: flex-end;
+//             align-items: center;
+//             margin-left: $sp;
+//         }
+//         li:nth-child(n+2) {
+//             padding: 0;
+//         }
+//         li a {
+//             padding: math.div($sp, 4) math.div($sp, 2);
+//         }
+//     }
+    
+//     .site-identity {
+//         flex: none;
+//         padding-right: math.div($sp, 2);
+//     }
+
+//     .controls {
+//         order: 1;
+//         padding-left: math.div($sp, 2);
+//     }
+
+//     .toggler {
+//         display: none;
+//     }
+
+//     #toggler-content {
+//         flex: 1;
+//         overflow: visible;
+//     }
+
+//     .hide,
+//     .show {
+//         height: auto;
+//     }
+// }
+
 
 /************ BUTTONS AND ALERTS ************/
 
@@ -207,23 +414,60 @@ h1, h2, h3, h4, h5, h6 {
 
 /************ THEME COMPONENTS   ************/
 
+
+/* Mobile-first */
+
+.logo-banner {
+    display: flex;
+    justify-content: center;
+    
+    img {
+        height: 5rem;
+        padding: 2.5rem 0;
+    }
+}
+
 .flower-border {
     height: 2rem;
-    border: 1px solid red;
     background-image: url("../assets/img/border.png");
     background-repeat: repeat-x;
     background-position: bottom center;
     background-size: cover;
 }
 
-@media only screen and (min-width: 600px) {
+/* Small */
+@media only screen and (min-width: map.get($breakpoints, "sm")) {
     .flower-border {
         background-size: contain;
     }
 }
 
+/* Medium */
+@media only screen and (min-width: map.get($breakpoints, "md")) {
+    .logo-banner img {
+        height: 6rem;
+        padding: 3rem 0;
+    }
+}
 
-/************ COLORS ************/
+/* Large */
+@media only screen and (min-width: map.get($breakpoints, "lg")) {
+    .logo-banner img {
+        height: 7rem;
+        padding: 3.5rem 0;
+    }
+}
+
+/* Extra-large */
+@media only screen and (min-width: map.get($breakpoints, "xl")) {
+    .logo-banner img {
+        height: 8rem;
+        padding: 4rem 0;
+    }
+}
+
+
+/************ COLORS / STYLES ************/
 
 @each $label, $color in $theme-colors {
 
@@ -234,3 +478,11 @@ h1, h2, h3, h4, h5, h6 {
     }
 
 }
+
+// .txt-bold {
+//     font-weight: bold;
+// }
+
+// .txt-italic {
+//     font-style: italic;
+// }
