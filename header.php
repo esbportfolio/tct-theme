@@ -35,29 +35,18 @@ declare(strict_types=1);
                 <div class="container">
                     <div id="toggler-content" class="hide" aria-hidden="true">
                         <ul>
-                            <li><a href="#">Link 1</a></li>
-                            <li><a href="#" class="active">Link 2</a></li>
-                            <li class="dropdown-toggle"><a href="#">Dropdown Parent 1<span class="icon-down-dir"></span></a>
-                                <ul class="dropdown">
-                                    <li><a href="#">Link a</a></li>
-                                    <li><a href="#">Link b</a>
-                                        <ul>
-                                            <li><a href="#">Link i</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown-toggle"><a href="#">Link<span class="icon-down-dir"></span></a>
-                                <ul class="dropdown">
-                                    <li><a href="#">Link a</a></li>
-                                    <li><a href="#">Link b</a>
-                                        <ul>
-                                            <li><a href="#">Link i</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Link 4</a></li>
+<!-- Begin main nav walker -->
+<?php
+// Note: If a menu isn't found at the location below,
+// wp_nav_menu falls back to the first menu created
+wp_nav_menu(array(
+	'menu' => tct_get_menu_id('primary-menu'),
+	'container' => false,
+	'items_wrap' => '%3$s',
+	'walker' => new Tct_Nav_Header_Walker(new Tct_Html_Helper(), 7),
+));
+?>
+<!-- End main nav walker -->
                         </ul>
                     </div>
                 </div>

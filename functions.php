@@ -24,6 +24,12 @@ if (!function_exists('tct_dependency_setup')) {
         // List of required files (must be present for theme to work)
         $required_files = array(
             get_stylesheet_directory() . '/inc/constants.php', // Constants
+            get_stylesheet_directory() . '/inc/helpers.php', // Helper functions
+
+            get_stylesheet_directory() . '/classes/class-tct-html-helper.php', // HTML helper class, goes before rest of classes
+
+            get_stylesheet_directory() . '/classes/abstract-tct-nav-walker.php', // Walker - Navigation walker abstract class
+            get_stylesheet_directory() . '/classes/class-tct-nav-header-walker.php', // Walker - Header navigation walker
         );
 
         // List of included files (theme will work even if not present)
@@ -57,9 +63,7 @@ if (!function_exists('tct_theme_setup')) {
 
         // Register menus for theme
         register_nav_menus( array(
-            'primary-menu' => 'Navigation Menu',
-            'social-menu' => 'Socials Menu',
-            'credit-menu' => 'Credits Menu'
+            'primary-menu' => 'Navigation Menu'
         ) );
         
     }
