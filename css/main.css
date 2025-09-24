@@ -163,7 +163,7 @@ nav a {
   border-bottom: 0.5rem solid #00a56a;
 }
 #primary-menu ul {
-  padding: 0 2rem;
+  padding: 0 1rem;
 }
 #primary-menu a.active {
   color: #00a56a;
@@ -216,9 +216,6 @@ nav a {
     background-color: #fff;
     border: 1px solid #00a56a;
     border-radius: 0.5rem;
-  }
-  #primary-menu .dropdown ul {
-    padding: 0 1rem;
   }
   #primary-menu .dropdown-toggle:hover .dropdown {
     display: block;

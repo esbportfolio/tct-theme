@@ -224,7 +224,7 @@ nav {
     }
 
     ul {
-        padding: 0 2rem;
+        padding: 0 1rem;
     }
 
     a.active {
@@ -270,7 +270,6 @@ nav {
         border-style: solid;
 
         ul:first-child {
-            // border: 1px solid red;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -290,10 +289,6 @@ nav {
             background-color: #fff;
             border: 1px solid $tct-green;
             border-radius: 0.5rem;
-
-            ul {
-                padding: 0 1rem;
-            }
         }
 
         .dropdown-toggle {
