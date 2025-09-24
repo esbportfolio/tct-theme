@@ -45,18 +45,19 @@ class Tct_Nav_Header_Walker extends Tct_Nav_Walker {
             $el_title .= $icon;
         }
 
-        // Add a class if the element or its descendent is active
+        // If nav element is active, give it the active class and don't create a link
+        // Otherwise, create a link to go to the nav item.
         if ($el_active) {
-            $a_classes[] = 'active';
+            $li_classes[] = 'active';
+            $content = $el_title;
+        } else {
+            $content = $this->html_helper->create_html_tag(
+                tag_type: 'a',
+                inner_html: $el_title,
+                classes: $a_classes,
+                attr: $a_attr
+            );
         }
-
-        // Get a formatted anchor tag
-        $a_tag = $this->html_helper->create_html_tag(
-            tag_type: 'a',
-            inner_html: $el_title,
-            classes: $a_classes,
-            attr: $a_attr
-        );
 
         // Get a formatted list item tag
         // We use the array format since we only need the opening tag
@@ -67,7 +68,7 @@ class Tct_Nav_Header_Walker extends Tct_Nav_Walker {
         );
 
         // Inserts tags into the output
-        $output .= str_repeat(T, $this->base_indent + $depth) . $li_tag_array['start'] . $a_tag;
+        $output .= str_repeat(T, $this->base_indent + $depth) . $li_tag_array['start'] . $content;
 
     }
 

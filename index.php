@@ -11,8 +11,22 @@ get_header();
 
 ?>
             <div class="container">
-                <h1>Main Header</h1>
-                <p>This is the body</p>
+                <h1>All Posts</h1>
+<?php
+if ( have_posts() ) {
+	// If there are posts, create a Post Formatter object
+	$post_formatter = new Tct_Post_Formatter(new Tct_Html_Helper);
+    while ( have_posts() ) {
+        the_post();
+        echo $post_formatter->format_post(4, true);
+    }
+} else {
+?>
+                <p>No posts yet, but check back to see what's coming soon!</p>
+                <p><a href="<?php echo get_site_url(); ?>">Return Home</a></p>
+<?php
+}
+?>
             </div>
 <?php
 

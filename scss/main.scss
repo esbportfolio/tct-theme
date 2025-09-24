@@ -152,6 +152,14 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
+a {
+    color: $tct-blue;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 /************ RESPONSIVE LAYOUT ************/
 
 /* Responsive display classes */
@@ -227,9 +235,15 @@ nav {
         padding: 0 1rem;
     }
 
-    a.active {
+    li.active {
         color: $tct-green;
         font-weight: bold;
+    }
+
+    /* Resets font for dropdown items so only the active one is colored */
+    li.active ul {
+        color: #000;
+        font-weight: normal;
     }
 
     .toggler {
@@ -298,10 +312,6 @@ nav {
                 position: absolute;
             }
 
-            a:hover {
-                text-decoration: none;
-            }
-
         }
 
         .toggler {
@@ -348,6 +358,17 @@ nav {
 
 /************ THEME COMPONENTS   ************/
 
+/* General Theme Components */
+
+.post-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.post-link:hover {
+    color: $tct-blue;
+    text-decoration: underline;
+}
 
 /* Mobile-first */
 
