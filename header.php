@@ -16,7 +16,7 @@ declare(strict_types=1);
 	</head>
     <body>
         <header>
-            <div class="bg-tan">
+            <div class="banner">
                 <div class="logo-banner">
                     <a href="<?php echo get_site_url(); ?>" class="display-max-md" aria-label="Logo, links to home page">
                         <img src="<?php echo SITE_ROOT . '/assets/img/logo_icon.png'; ?>" alt="Site logo">

@@ -327,47 +327,100 @@ nav {
 
 }
 
-/************ BUTTONS AND ALERTS ************/
+// /************ BUTTONS AND ALERTS ************/
 
-@each $meaning, $color in $context-colors {
+// @each $meaning, $color in $context-colors {
     
-    .alert.#{$meaning} {
-        color: shade($color, 75%);
-        background-color: tint($color, 75%);
-        border: 1px solid $color;
-        border-radius: 0.5rem;
-        padding: 0.25rem 0.5rem;
-        margin: 1rem auto;
-    }
+//     .alert.#{$meaning} {
+//         color: shade($color, 75%);
+//         background-color: tint($color, 75%);
+//         border: 1px solid $color;
+//         border-radius: 0.5rem;
+//         padding: 0.25rem 0.5rem;
+//         margin: 1rem auto;
+//     }
 
-    button.#{$meaning} {
-        color: contrast-text($color);
-        background-color: $color;
-        border: 1px solid shade($color, 50%);
-        border-radius: 0.5rem;
-        padding: 0.25rem 0.5rem;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
+//     button.#{$meaning} {
+//         color: contrast-text($color);
+//         background-color: $color;
+//         border: 1px solid shade($color, 50%);
+//         border-radius: 0.5rem;
+//         padding: 0.25rem 0.5rem;
+//         font-weight: bold;
+//         text-transform: uppercase;
+//     }
 
-    button.#{$meaning}:hover {
-        background-color: tint($color, 25%);
-        transition: 0.3s;
-    }
-}
+//     button.#{$meaning}:hover {
+//         background-color: tint($color, 25%);
+//         transition: 0.3s;
+//     }
+// }
 
 /************ THEME COMPONENTS   ************/
 
 /* General Theme Components */
 
+.banner {
+    background-color: $tct-tan;
+}
+
+.post {
+    border-bottom: 10px solid $tct-yellow;
+}
+
+.post:last-of-type {
+    border: 0;
+}
+
+.post h3 {
+    margin-bottom: 0;
+}
+
 .post-link {
     color: inherit;
     text-decoration: none;
+
+    &:hover {
+        color: $tct-blue;
+        text-decoration: underline;
+    }
 }
 
-.post-link:hover {
-    color: $tct-blue;
-    text-decoration: underline;
+.post-date {
+    margin: 0;
+}
+
+.post-tag {
+    margin-top: 0;
+
+    a {
+        margin-right: 0.5rem;
+        padding: 0 0.5rem;
+        background-color: $tct-blue;
+        border-radius: 0.25rem;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+
+        &:hover {
+            background-color: shade($tct-blue, 25%);
+            transition: 0.3s;
+        }
+    }
+}
+
+.category {
+    color: tint(#000, 25%);
+    font-style: italic;
+    
+    a {
+        color: inherit;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 /* Mobile-first */
@@ -422,17 +475,17 @@ nav {
 }
 
 
-/************ COLORS / STYLES ************/
+// /************ COLORS / STYLES ************/
 
-@each $label, $color in $theme-colors {
+// @each $label, $color in $theme-colors {
 
-    @each $attribute, $prefix in $style-parts {
-        .#{$prefix}-#{$label} {
-            #{$attribute}: #{$color};
-        }
-    }
+//     @each $attribute, $prefix in $style-parts {
+//         .#{$prefix}-#{$label} {
+//             #{$attribute}: #{$color};
+//         }
+//     }
 
-}
+// }
 
 // .txt-bold {
 //     font-weight: bold;
