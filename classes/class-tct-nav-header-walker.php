@@ -27,6 +27,29 @@ class Tct_Nav_Header_Walker extends Tct_Nav_Walker {
         // Set if element active (also active if top-level ancestor of active element)
         $el_active = ($data_object->current || ($depth === 0 && $data_object->current_item_ancestor));
 
+        // Do further checking if ALL of the following conditions are met:
+        // 1) Element isn't active currently
+        // 2) Blog has its own page seperate from the home page
+        // 3) The current page is a single (e.g. a single post or page)
+        // 4) The current page has post type post (e.g. is a blog post)
+        if ( 
+            !$el_active && 
+            get_post_type_archive_link('post') !== get_home_url() && 
+            is_singular() && 
+            get_post_type() === 'post'
+        ) {
+            
+            // Build an array with all the URL variants that could be used to link to the blog page in navigation
+            $blog_url_arr = array(
+                get_post_type_archive_link('post'), // Full URL
+                parse_url(get_post_type_archive_link('post'), PHP_URL_PATH), // Slug with trailing slash
+                rtrim(parse_url(get_post_type_archive_link('post'), PHP_URL_PATH), '/') // Slug without trailing slash
+            );
+
+            // If the current navigation element links to the blog index, then make it active
+            $el_active = in_array($el_url, $blog_url_arr);
+        }
+
         // Set default conditions
         $li_classes = array();
         $a_classes = array();
