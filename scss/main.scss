@@ -364,16 +364,17 @@ nav {
     background-color: $tct-tan;
 }
 
-.post {
+.post h1,
+.post h3 {
+    margin-bottom: 0;
+}
+
+.preview {
     border-bottom: 10px solid $tct-yellow;
 }
 
-.post:last-of-type {
+.preview:last-of-type {
     border: 0;
-}
-
-.post h3 {
-    margin-bottom: 0;
 }
 
 .post-link {
@@ -420,6 +421,14 @@ nav {
         &:hover {
             text-decoration: underline;
         }
+    }
+}
+
+.post-nav {
+    display: flex;
+    justify-content: space-between;
+    .disabled {
+        color: tint(#000, 50%);
     }
 }
 

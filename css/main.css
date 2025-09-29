@@ -250,16 +250,17 @@ nav a {
   background-color: #f3edd7;
 }
 
-.post {
+.post h1,
+.post h3 {
+  margin-bottom: 0;
+}
+
+.preview {
   border-bottom: 10px solid #e6a622;
 }
 
-.post:last-of-type {
+.preview:last-of-type {
   border: 0;
-}
-
-.post h3 {
-  margin-bottom: 0;
 }
 
 .post-link {
@@ -302,6 +303,14 @@ nav a {
 }
 .category a:hover {
   text-decoration: underline;
+}
+
+.post-nav {
+  display: flex;
+  justify-content: space-between;
+}
+.post-nav .disabled {
+  color: rgb(127.5, 127.5, 127.5);
 }
 
 /* Mobile-first */
