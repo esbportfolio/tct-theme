@@ -1,7 +1,6 @@
 <?php
 /**
- * The template for displaying pages (i.e. posts with the type 'page')
- * (A page is considered a type of post in WordPress)
+ * The template for displaying 404 pages (not found)
  */
 
 declare(strict_types=1);
