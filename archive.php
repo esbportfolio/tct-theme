@@ -24,6 +24,10 @@ if ( have_posts() ) {
                 <p><a href="<?php echo get_site_url(); ?>">Return Home</a></p>
 <?php
 }
+
+if ( $wp_query->max_num_pages > 1 ) {
+    get_template_part('pagination');
+}
 ?>
             </div>
 <?php

@@ -34,7 +34,7 @@ if (!function_exists('tct_dependency_setup')) {
             // get_stylesheet_directory() . '/classes/class-tct-comment-walker.php', // Walker - Comment walker
 
             // get_stylesheet_directory() . '/classes/class-tct-form-formatter.php', // Class for handling form formatting
-            // get_stylesheet_directory() . '/classes/class-tct-pagination-formatter.php', // Class for handling pagination
+            get_stylesheet_directory() . '/classes/class-tct-pagination-formatter.php', // Class for handling pagination
             get_stylesheet_directory() . '/classes/class-tct-post-formatter.php', // Class for handling post formatting
         );
 
