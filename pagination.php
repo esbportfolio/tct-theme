@@ -11,21 +11,11 @@ declare(strict_types=1);
 
 ?>
 
-                <nav aria-label="Page Navigation">
-                    <ul class="pagination">
-<?php
-// $pagination_formatter = new Tct_Pagination_Formatter($wp_query, new Tct_Html_Helper());
-// echo $pagination_formatter->format_links(8);
-?>
-                    </ul>
-                </nav>
-                <nav class="pagination" aria-label="Demo Page Navigation">
+                <nav class="pagination" aria-label="Page Navigation">
                     <ul>
-                        <li class="prev disabled" aria-disabled="true"><span class="icon-left-dir"></span>Prev</li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li class="gap">...</li>
-                        <li><a href="#">10</a></li>
-                        <li class="next">Next<span class="icon-right-dir"></li>
+<?php
+$pagination_formatter = new Tct_Pagination_Formatter($wp_query, new Tct_Html_Helper());
+echo $pagination_formatter->format_links(6);
+?>
                     </ul>
                 </nav>

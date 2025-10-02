@@ -452,7 +452,7 @@ nav {
 
     li {
         min-width: 2rem;
-        padding: 0.25rem 0.5rem;
+        padding: 0.25rem 0.25rem;
         border-width: 1px 1px 1px 0px;
         border-style: solid;
         border-color: tint(#000, 25%);
@@ -519,6 +519,15 @@ nav {
     .logo-banner img {
         height: 6rem;
         padding: 3rem 0;
+    }
+
+    .pagination li {
+        &.prev {
+            padding-right: 0.5rem;
+        }
+        &.next {
+            padding-left: 0.5rem;
+        }
     }
 }
 

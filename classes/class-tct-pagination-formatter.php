@@ -57,7 +57,7 @@ class Tct_Pagination_Formatter {
                 'page_num' => $page,
                 'is_current' => $page === $this->current_page,
                 'url' => get_pagenum_link($page),
-                'is_placeholder' => false
+                'is_gap' => false
             );
         }, $page_range);
 
@@ -91,7 +91,7 @@ class Tct_Pagination_Formatter {
 
         // Create an object that will be used to mark where there's a gap placeholder
         $gap_obj = (object) array(
-            'is_placeholder' => true
+            'is_gap' => true
         );
 
         // If at the start of the range, show gap before last page
@@ -163,57 +163,45 @@ class Tct_Pagination_Formatter {
             $disabled = true;
         }
 
-        // // Create span with icon control
-        // $span = $this->html_helper->create_html_tag(
-        //     tag_type: 'span',
-        //     classes: ($get_prev) ? array('icon-left-dir') : array('icon-right-dir'),
-        //     attr: array(
-        //         'aria-hidden' => 'true',
-        //     )
-        // );
+        // Create span with icon control
+        $ctrl_icon = $this->html_helper->create_html_tag(
+            tag_type: 'span',
+            classes: ($get_prev) ? array('icon-left-dir') : array('icon-right-dir'),
+            attr: array(
+                'aria-hidden' => 'true',
+            )
+        );
 
-        // // All link tags get an aria-label attribute
-        // $a_attr = array(
-        //     'aria-label' => ($get_prev) ? 'Previous' : 'Next'
-        // );
+        // Set up the control text
+        $ctrl_text = ($get_prev) ? $ctrl_icon . '<span class="display-min-md">Prev</span>' : '<span class="display-min-md">Next</span>' . $ctrl_icon;
         
-        // // If control is enabled (more common condition),
-        // // get an href to the previous or next page
-        // if (!$disabled) {
-        //     $pg_offset = ($get_prev) ? -1 : 1;
-        //     $a_attr += array(
-        //         'href' => get_pagenum_link($this->current_page + $pg_offset),
-        //     );
-        // // Otherwise set attributes for disabled link
-        // } else {
-        //     $a_attr += array(
-        //         'tabindex' => '-1',
-        //         'aria-disabled' => 'true',
-        //     );
-        // }
+        // If control is enabled (more common condition),
+        // link to the previous or next page
+        if (!$disabled) {
+            $pg_offset = ($get_prev) ? -1 : 1;
+            $a = $this->html_helper->create_html_tag(
+                tag_type: 'a',
+                inner_html: $ctrl_text,
+                attr: array(
+                    'href' => get_pagenum_link($this->current_page + $pg_offset)
+                )
+            );
+        }
 
-        // // Create anchor tag with span inside it
-        // $a = $this->html_helper->create_html_tag(
-        //     tag_type: 'a',
-        //     inner_html: $span,
-        //     classes: array(),
-        //     attr: $a_attr,
-        // );
+        // Set up list item classes
+        $li_classes = ($get_prev) ? array('prev') : array('next');
+        if ($disabled) {
+            $li_classes[] = 'disabled';
+        }
 
-        // // Set up list item classes
-        // $li_classes = array('page-item');
-        // if ($disabled) {
-        //     $li_classes[] = 'disabled';
-        // }
+        // Create the list item for the previous / next control
+        $li = $this->html_helper->create_html_tag(
+            tag_type: 'li',
+            inner_html: $a ?? $ctrl_text,
+            classes: $li_classes,
+            attr: ($get_prev) ? array('aria-label' => 'Previous Page') : array('aria-lable' => 'Next Page')
+        );
 
-        // // Create list item tag with anchor inside it
-        // $li = $this->html_helper->create_html_tag(
-        //     tag_type: 'li',
-        //     inner_html: $a,
-        //     classes: $li_classes,
-        // );
-
-        $li = '';
         return $li;
 
     }
@@ -238,29 +226,51 @@ class Tct_Pagination_Formatter {
         $next_ctrl = $this->get_prev_next_html('next');
 
 
-    //     // Insert previous control
-    //     $output .= str_repeat(T, $base_indent) . $prev_ctrl . N;
+        // Insert previous control
+        $output .= str_repeat(T, $base_indent) . $prev_ctrl . N;
 
-    //     // Insert page links and placeholders
-    //     foreach ($link_data as $page) {
+        // Insert page links and placeholders
+        foreach ($link_data as $page) {
+            
+            // Set default conditions
+            $ctrl_text = $page->page_num ?? '...';
+            $a = null;
+            $li_classes = array();
 
-    //         // If the page isn't a gap placeholder, create the page link
-    //         if (!$page->is_placeholder) {
-    //             $a = '<a class="page-link" href="' . $page->url . '">' . $page->page_num . '</a>';
-    //             $active_class = ($page->is_current) ? ' active' : '';
-    //             $li = '<li class="page-item' . $active_class . '" aria-current="page">' . $a . '</li>';
-    //         // If it is, create the elipsis link
-    //         } else {
-    //             $a = '<a class="page-link border-0 bg-transparent text-dark" tabindex="-1" aria-label="ellipses" aria-disabled="true">...</a>';
-    //             $li = '<li class="page-item disabled">' . $a . '</li>';
-    //         }
+            // If the current li isn't a gap marker or the current page, generate a link
+            if (!$page->is_gap && !$page->is_current) {
+                $a = $this->html_helper->create_html_tag(
+                    tag_type: 'a',
+                    inner_html: strval($ctrl_text),
+                    attr: array(
+                        'href' => $page->url
+                    )
+                );
+            }
 
-    //         // Insert the pagination item
-    //         $output .= str_repeat(T, $base_indent) . $li . N;
-    //     }
+            // Add class for active link
+            if ($page->is_current ?? false) {
+                $li_classes[] = 'active';
+            }
 
-    //     // Insert next control
-    //     $output .= str_repeat(T, $base_indent) . $next_ctrl . N;
+            // Add class for gap
+            if ($page->is_gap) {
+                $li_classes[] = 'gap';
+            }
+
+            // Build list item
+            $li = $this->html_helper->create_html_tag(
+                tag_type: 'li',
+                inner_html: $a ?? strval($ctrl_text),
+                classes: $li_classes
+            );
+
+            // Insert the pagination item
+            $output .= str_repeat(T, $base_indent) . $li . N;
+        }
+
+        // Insert next control
+        $output .= str_repeat(T, $base_indent) . $next_ctrl . N;
 
         return $output;
 

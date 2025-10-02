@@ -329,7 +329,7 @@ nav a {
 }
 .pagination li {
   min-width: 2rem;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.25rem;
   border-width: 1px 1px 1px 0px;
   border-style: solid;
   border-color: rgb(63.75, 63.75, 63.75);
@@ -387,6 +387,12 @@ nav a {
   .logo-banner img {
     height: 6rem;
     padding: 3rem 0;
+  }
+  .pagination li.prev {
+    padding-right: 0.5rem;
+  }
+  .pagination li.next {
+    padding-left: 0.5rem;
   }
 }
 /* Large */
