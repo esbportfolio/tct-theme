@@ -487,6 +487,35 @@ nav {
     }
 }
 
+/* Comments */
+
+.comment {
+    // border: 1px solid red;
+    margin-top: 1.5rem;
+
+    .comment {
+        margin-left: 1.5rem;
+        padding-left: 0.5rem;
+    }
+
+    .thread {
+        border-left: 0.25rem solid $tct-green;
+    }
+
+    .author {
+        font-family: 'Arvo', Garamond, serif;
+        font-weight: bold;
+    }
+
+    .date {
+        color: tint(#000, 25%);
+    }
+
+    .reply {
+        margin-bottom: 1rem;
+    }
+}
+
 /* Responsive Components */
 
 .logo-banner {
@@ -512,6 +541,13 @@ nav {
     .flower-border {
         background-size: contain;
     }
+
+    .comment {
+        .comment {
+            margin-left: 2.25rem;
+            padding-left: 0.75rem;
+        }
+    }
 }
 
 /* Medium */
@@ -529,6 +565,13 @@ nav {
             padding-left: 0.5rem;
         }
     }
+
+    .comment {
+        .comment {
+            margin-left: 3rem;
+            padding-left: 1rem;
+        }
+    }
 }
 
 /* Large */
@@ -536,6 +579,13 @@ nav {
     .logo-banner img {
         height: 7rem;
         padding: 3.5rem 0;
+    }
+
+    .comment {
+        .comment {
+            margin-left: 4rem;
+            padding-left: 1rem;
+        }
     }
 }
 

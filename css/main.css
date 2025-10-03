@@ -358,6 +358,28 @@ nav a {
   border-width: 0 1px 0 0;
 }
 
+/* Comments */
+.comment {
+  margin-top: 1.5rem;
+}
+.comment .comment {
+  margin-left: 1.5rem;
+  padding-left: 0.5rem;
+}
+.comment .thread {
+  border-left: 0.25rem solid #00a56a;
+}
+.comment .author {
+  font-family: "Arvo", Garamond, serif;
+  font-weight: bold;
+}
+.comment .date {
+  color: rgb(63.75, 63.75, 63.75);
+}
+.comment .reply {
+  margin-bottom: 1rem;
+}
+
 /* Responsive Components */
 .logo-banner {
   display: flex;
@@ -381,6 +403,10 @@ nav a {
   .flower-border {
     background-size: contain;
   }
+  .comment .comment {
+    margin-left: 2.25rem;
+    padding-left: 0.75rem;
+  }
 }
 /* Medium */
 @media only screen and (min-width: 768px) {
@@ -394,12 +420,20 @@ nav a {
   .pagination li.next {
     padding-left: 0.5rem;
   }
+  .comment .comment {
+    margin-left: 3rem;
+    padding-left: 1rem;
+  }
 }
 /* Large */
 @media only screen and (min-width: 992px) {
   .logo-banner img {
     height: 7rem;
     padding: 3.5rem 0;
+  }
+  .comment .comment {
+    margin-left: 4rem;
+    padding-left: 1rem;
   }
 }
 /* Extra-large */

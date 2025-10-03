@@ -209,7 +209,7 @@ class Tct_Post_Formatter {
         $output = 
             str_repeat(T, $base_indent) . '<div class="' . $div_class_str . '">' . N . 
             $content_html . 
-            str_repeat(T, $base_indent) . '</div>';
+            str_repeat(T, $base_indent) . '</div>' . N;
         
         return $output;
     }
