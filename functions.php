@@ -29,11 +29,9 @@ if (!function_exists('tct_dependency_setup')) {
             get_stylesheet_directory() . '/classes/class-tct-html-helper.php', // HTML helper class, goes before rest of classes
 
             get_stylesheet_directory() . '/classes/abstract-tct-nav-walker.php', // Walker - Navigation walker abstract class
-            // get_stylesheet_directory() . '/classes/class-tct-cat-walker.php', // Walker - Category walker
             get_stylesheet_directory() . '/classes/class-tct-nav-header-walker.php', // Walker - Header navigation walker
-            // get_stylesheet_directory() . '/classes/class-tct-comment-walker.php', // Walker - Comment walker
-
-            // get_stylesheet_directory() . '/classes/class-tct-form-formatter.php', // Class for handling form formatting
+            get_stylesheet_directory() . '/classes/class-tct-comment-walker.php', // Walker - Comment walker
+            
             get_stylesheet_directory() . '/classes/class-tct-pagination-formatter.php', // Class for handling pagination
             get_stylesheet_directory() . '/classes/class-tct-post-formatter.php', // Class for handling post formatting
         );
@@ -133,9 +131,9 @@ are loaded.  This can be used to remove default fields.
 */
 
 // Remove website field from comment form
-function tct_remove_website_field( $fields ) {
-	unset( $fields['url'] );
-	return $fields;
+function tct_remove_fields( $fields ) {
+    // Note: Key values don't do anything, but are required to use array_diff_key
+    return array_diff_key($fields, array('url' => null));
 }
 
-add_filter( 'comment_form_default_fields', 'tct_remove_website_field' );
+add_filter( 'comment_form_default_fields', 'tct_remove_fields' );

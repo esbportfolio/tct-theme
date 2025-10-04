@@ -168,6 +168,27 @@ a:hover {
     text-decoration: none;
 }
 
+label, 
+textarea,
+input {
+    display: block;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    display: inline;
+
+    & + label {
+        display: inline;
+    }
+}
+
+textarea,
+input[type="text"] {
+    width: 100%;
+}
+
 /************ RESPONSIVE LAYOUT ************/
 
 /* Responsive display classes */
@@ -335,6 +356,12 @@ nav {
 
 }
 
+/************ FORMS ************/
+
+form .group {
+    margin-top: 1rem;
+}
+
 // /************ BUTTONS AND ALERTS ************/
 
 // @each $meaning, $color in $context-colors {
@@ -498,13 +525,12 @@ nav {
         padding-left: 0.5rem;
     }
 
-    .thread {
-        border-left: 0.25rem solid $tct-green;
-    }
-
     .author {
         font-family: 'Arvo', Garamond, serif;
         font-weight: bold;
+        &.current-user {
+            color: shade($tct-green, 50%);
+        }
     }
 
     .date {
@@ -513,7 +539,43 @@ nav {
 
     .reply {
         margin-bottom: 1rem;
+        a:nth-child(2) {
+            margin-left: 0.5rem;
+        }
     }
+
+    .login-indicator {
+        margin-left: 0.5rem;
+    }
+
+    .moderation {
+        color: shade($tct-red, 25%);
+    }
+
+}
+
+.thread > .comment {
+    border-left: 0.25rem solid $tct-green;
+}
+
+#comment-reply {
+
+    textarea {
+        height: 10rem;
+    }
+
+    .closed {
+        font-style: italic;
+        color: tint(#000, 25%);
+    }
+}
+
+#cancel-comment-reply-link, 
+.login-indicator {
+    font-family: 'Prompt', Verdana, sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: tint(#000, 25%);
 }
 
 /* Responsive Components */
