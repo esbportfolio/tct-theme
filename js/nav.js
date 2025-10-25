@@ -12,8 +12,30 @@ const emptyNavLinks = document.querySelectorAll('nav a[href="#"]');
 // CALLBACKS
 
 /**
+ * Removes any noscript classes
+ * @param {Event} e Event that fires when DOM content has been loaded
+ */
+const removeNoScript = function(e) {
+    // Locate any elements with noscript classes
+    const noScript = document.querySelectorAll('.noscript-show, .noscript-hide');
+    // Update each element with a noscript class
+    noScript.forEach(function(el) {
+        // If an element was set to noscript-show, that means it's hidden by with scripts enabled,
+        // so if this script is working, set the aria-hidden value to true
+        if (el.classList.contains('noscript-show')) {
+            el.setAttribute('aria-hidden', 'true');
+        // If it was set to noscript-hide, that means it's shown by default, so set aria-hidden to false
+        } else {
+            el.setAttribute('aria-hidden', 'false');
+        }
+        // Remove the noscript classses
+        el.classList.remove('noscript-show', 'noscript-hide');
+    });
+}
+
+/**
  * Shows or hides the content the toggler is linked to
- * @param {Event} e Event triggered by the listener
+ * @param {Event} e Click event
  */
 const showTogglerContent = function(e) {
     // Locate targeted element
@@ -37,14 +59,57 @@ const showTogglerContent = function(e) {
 /**
  * Prevents empty links (href="#") in navigation sections from being triggered
  * (since those are handled by JavaScript rather than as actual links)
- * @param {Event} e Event triggered by the listener
+ * @param {Event} e Click event
  */
 const blockEmptyNavClick = function(e) {
     e.preventDefault();
 }
 
+/**
+ * Triggered by a click on the search button
+ * Either expands the search box if it isn't already expanded or allows the default search behavior if not
+ * @param {Event} e Click event
+ */
+const toggleSearchControls = function(e) {
+    // If the search box isn't currently expanded
+    if (e.currentTarget.dataset.expanded === 'false') {
+        // Prevent the default 'submit' behavior
+        e.preventDefault();
+        // Find any siblings with the 'hide' class
+        const hiddenEls = e.currentTarget.parentNode.querySelectorAll('.hide');
+        // Remove the hidden class and indicate the element is visble
+        hiddenEls.forEach(el => {
+            el.classList.remove('hide');
+            el.classList.add('show');
+            el.setAttribute('aria-hidden', 'false');
+        });
+        // Set the dataset to indicate the search box is now expanded
+        e.currentTarget.dataset.expanded = true;
+    }
+}
+
+/**
+ * Sets up the search display controls, including giving them an initial expanded value
+ * and setting up a click event listener
+ * @param {*} e Event that fires when DOM content has been loaded
+ */
+const searchDisplaySetup = function(e) {
+    // Get the search display toggle
+    const searchDisplay = document.getElementById('search-display');
+    // Add the data-exapnded property and set it to false (initial setting on page load)
+    searchDisplay.dataset.expanded = 'false';
+    // Add an onclick listener to the search display toggle
+    searchDisplay.addEventListener('click', toggleSearchControls);
+}
+
 ///////////////////////////////////////
 // LISTENERS
+
+// Attach a listener to remove noscript classes when DOM is loaded (only fires if JS is enabled)
+addEventListener('DOMContentLoaded', removeNoScript);
+
+// Set up search display toggler
+addEventListener('DOMContentLoaded', searchDisplaySetup);
 
 // Attach a listener to each element with the toggler class
 togglers.forEach(el => el.addEventListener('click', showTogglerContent));

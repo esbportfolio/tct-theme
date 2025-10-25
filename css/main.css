@@ -1,3 +1,4 @@
+/* Primary theme CSS file */
 /************ FONTS ************/
 @font-face {
   font-family: "Prompt";
@@ -183,7 +184,27 @@ input[type=text] {
     width: 60%;
   }
 }
+/************ NOSCRIPT SUPPORT ************/
+/* Important required to trump other directives if present */
+.noscript-hide {
+  display: none !important;
+}
+
+.noscript-show {
+  display: block !important;
+}
+
+#primary-menu .noscript-show {
+  height: var(--openHeight) !important;
+}
+
 /************ NAVIGATION ************/
+header button {
+  background-color: #fff;
+  border: 1px solid #153128;
+  border-radius: 0.25rem;
+}
+
 nav ul {
   margin: 0;
   list-style-type: none;
@@ -218,11 +239,6 @@ nav a {
   background-color: #00a56a;
   text-align: center;
 }
-#primary-menu .toggler button {
-  background-color: #fff;
-  border: 1px solid #153128;
-  border-radius: 0.25rem;
-}
 #primary-menu #toggler-content {
   flex: 0 1 100%;
   overflow: hidden;
@@ -233,6 +249,26 @@ nav a {
 }
 #primary-menu .show {
   height: var(--openHeight);
+}
+
+#search-bar {
+  background-color: #f3edd7;
+  padding: 0.5rem;
+}
+#search-bar form {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+#search-bar button {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+#search-bar .hide {
+  display: none;
+}
+#search-bar .show {
+  display: block;
 }
 
 /* Nav on medium and larger screens */
@@ -264,12 +300,14 @@ nav a {
   #primary-menu .dropdown-toggle:hover .dropdown {
     display: block;
     position: absolute;
+    z-index: 10;
   }
   #primary-menu .toggler {
     display: none;
   }
   #primary-menu .hide,
   #primary-menu .show {
+    display: block;
     height: auto;
   }
 }
