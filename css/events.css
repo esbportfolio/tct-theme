@@ -1,0 +1,6 @@
+/* Custom styles to work with The Events Calendar */
+.tribe-common .tribe-events-header__events-bar,
+.tribe-common .tribe-events-c-events-bar,
+.tribe-common .tribe-events-c-events-bar--border {
+  border: 1px solid red;
+}/*# sourceMappingURL=events.css.map */
