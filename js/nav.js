@@ -71,21 +71,44 @@ const blockEmptyNavClick = function(e) {
  * @param {Event} e Click event
  */
 const toggleSearchControls = function(e) {
+
+    const searchBox = document.getElementById('search-box');
+
+    /**
+     * Switches toggles show/hide classes and aria-hidden value
+     * @param {Element} el Element to act on
+     */
+    const toggleClassesAttr = function (el) {
+        // Toggle classes
+        el.classList.toggle('hide');
+        el.classList.toggle('show');
+        // Toggle aria-hidden value
+        if (el.getAttribute('aria-hidden') === 'false') {
+            el.setAttribute('aria-hidden', 'true');
+        } else {
+            el.setAttribute('aria-hidden', 'false');
+        }
+    }
+
     // If the search box isn't currently expanded
     if (e.currentTarget.dataset.expanded === 'false') {
         // Prevent the default 'submit' behavior
         e.preventDefault();
-        // Find any siblings with the 'hide' class
-        const hiddenEls = e.currentTarget.parentNode.querySelectorAll('.hide');
-        // Remove the hidden class and indicate the element is visble
-        hiddenEls.forEach(el => {
-            el.classList.remove('hide');
-            el.classList.add('show');
-            el.setAttribute('aria-hidden', 'false');
-        });
+        // Set search box classes and attributes
+        toggleClassesAttr(searchBox);
         // Set the dataset to indicate the search box is now expanded
         e.currentTarget.dataset.expanded = true;
+    } 
+    // If expanded but value is empty, treat a click as a request to close the box
+    else if (!searchBox.value) {
+        // Prevent the default 'submit' behavior
+        e.preventDefault();
+        // Set search box classes and attributes
+        toggleClassesAttr(searchBox);
+        // Set the dataset to indicate the search box is not expanded
+        e.currentTarget.dataset.expanded = false;
     }
+
 }
 
 /**

@@ -19,7 +19,7 @@ declare(strict_types=1);
             <noscript>JavaScript is currently disabled. Some features may not work as intended.</noscript>
             <div id="search-bar">
                 <form role="search" method="get" action="<?php echo esc_url(home_url('/')); ?>">
-                    <input class="hide noscript-show" type="search" placeholder="Search" aria-label="Value to search" value="<?php echo get_search_query(); ?>" name="s">
+                    <input id="search-box" class="hide noscript-show" type="search" placeholder="Search" aria-label="Value to search" value="<?php echo get_search_query(); ?>" name="s">
                     <button id="search-display" type="submit" value="Search" aria-label="Perform search">
                         <span class="icon-search"></span>
                     </button>
