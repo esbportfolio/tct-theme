@@ -185,6 +185,7 @@ class Tct_Post_Formatter {
         $post_data = $this->format_post_data($excerpt_only);
 
         // Handle sections that can be omitted to avoid unnecessary white space in code
+        $title_line = (!is_front_page()) ? str_repeat(T, $base_indent + 1) . $post_data['title'] . N : '';
         $date_line = ($post_data['date']) ? str_repeat(T, $base_indent + 1) . $post_data['date'] . N : '';
         $tags_line = ($post_data['tags']) ? str_repeat(T, $base_indent + 1) . $post_data['tags'] . N : '';
         $read_more_line = ($post_data['read_more']) ? str_repeat(T, $base_indent + 1) . '<p>' . $post_data['read_more'] . '</p>' . N : '';
@@ -193,7 +194,7 @@ class Tct_Post_Formatter {
 
         // Build the content that goes inside the post div
         $content_html = 
-            str_repeat(T, $base_indent + 1) . $post_data['title'] . N . 
+            $title_line . 
             $date_line . 
             $tags_line .
             str_repeat(T, $base_indent + 1) .  $post_data['content'] .
