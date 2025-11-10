@@ -75,6 +75,7 @@ $context-colors: (
     src: url("../assets/font-prompt/Prompt-Regular.ttf");
     font-weight: 500;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -82,6 +83,7 @@ $context-colors: (
     src: url("../assets/font-prompt/Prompt-Italic.ttf");
     font-weight: 500;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
@@ -89,6 +91,7 @@ $context-colors: (
     src: url("../assets/font-prompt/Prompt-Bold.ttf");
     font-weight: 700;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -96,6 +99,7 @@ $context-colors: (
     src: url("../assets/font-prompt/Prompt-BoldItalic.ttf");
     font-weight: 700;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
@@ -103,6 +107,7 @@ $context-colors: (
     src: url("../assets/font-prompt/Prompt-Light.ttf");
     font-weight: 300;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -110,6 +115,7 @@ $context-colors: (
     src: url("../assets/font-prompt/Prompt-LightItalic.ttf");
     font-weight: 300;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
@@ -117,6 +123,7 @@ $context-colors: (
     src: url("../assets/font-arvo/Arvo-Regular.ttf");
     font-weight: 500;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -124,6 +131,7 @@ $context-colors: (
     src: url("../assets/font-arvo/Arvo-Italic.ttf");
     font-weight: 500;
     font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
@@ -131,6 +139,7 @@ $context-colors: (
     src: url("../assets/font-arvo/Arvo-Bold.ttf");
     font-weight: 700;
     font-style: normal;
+    font-display: swap;
 }
 
 @font-face {
@@ -138,6 +147,7 @@ $context-colors: (
     src: url("../assets/font-arvo/Arvo-BoldItalic.ttf");
     font-weight: 700;
     font-style: italic;
+    font-display: swap;
 }
 
 /************ BASE STYLES ************/
