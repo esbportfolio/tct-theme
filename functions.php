@@ -121,30 +121,14 @@ function tct_enqueue_scripts() {
 	}
 }
 
-add_action( 'wp_enqueue_scripts', 'tct_enqueue_scripts' );
-
-// Deregister The Events Calendar styles
-// TODO: Add custom logic to check for plugin presence
-
-// function deregister_tribe_styles() {
-    // wp_deregister_style( 'tribe-events-pro-views-v2-skeleton' );
-    // wp_deregister_style( 'tribe-events-pro-views-v2-full' );
-    // wp_deregister_style( 'tribe-events-views-v2-skeleton' );
-    // wp_deregister_style( 'tribe-events-views-v2-full' );
-    // wp_deregister_style( 'tribe-common-skeleton-style' );
-    // wp_deregister_style( 'tribe-common-full-style' );
-    // wp_deregister_style( 'tribe-events-views-v2-bootstrap-datepicker-styles' );
-// }
-
-function tct_event_styles() {
-    wp_enqueue_style(
-        'tct-events',
-        SITE_ROOT . '/css/events.css'
-    );
+// Cleanup unneeded Wordpress code
+function tct_wordpress_cleanup() {
+    wp_deregister_style('wp-block-library');
 }
 
-// add_action( 'wp_enqueue_scripts', 'deregister_tribe_styles', 1 );
-add_action( 'wp_enqueue_scripts', 'tct_event_styles', 999 );
+add_action( 'wp_enqueue_scripts', 'tct_enqueue_scripts' );
+
+add_action( 'wp_enqueue_scripts', 'tct_wordpress_cleanup' );
 
 /* ----- FILTERS ----- */
 
