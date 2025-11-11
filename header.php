@@ -47,14 +47,16 @@ declare(strict_types=1);
                         <ul>
 <!-- Begin main nav walker -->
 <?php
-// Note: If a menu isn't found at the location below,
-// wp_nav_menu falls back to the first menu created
-wp_nav_menu(array(
-	'menu' => tct_get_menu_id('primary-menu'),
-	'container' => false,
-	'items_wrap' => '%3$s',
-	'walker' => new Tct_Nav_Header_Walker(new Tct_Html_Helper(), 7),
-));
+
+if (tct_menu_has_items('primary-menu')) {
+    wp_nav_menu(array(
+        'menu' => tct_get_menu_id('primary-menu'),
+        'container' => false,
+        'items_wrap' => '%3$s',
+        'walker' => new Tct_Nav_Header_Walker(new Tct_Html_Helper(), 7),
+    ));
+}
+
 ?>
 <!-- End main nav walker -->
                         </ul>
