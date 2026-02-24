@@ -357,6 +357,15 @@ form .group {
   background-color: #f3edd7;
 }
 
+.credit {
+  margin-bottom: 0.5rem;
+  font-size: 0.825rem;
+  color: #153128;
+}
+.credit a {
+  color: inherit;
+}
+
 /* Posts */
 .post h1,
 .post h3 {
